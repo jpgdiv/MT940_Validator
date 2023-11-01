@@ -11,6 +11,18 @@ const theme = createTheme({
 			main: blue[900],
 		},
 	},
+	components: {
+		MuiButton: {
+		  styleOverrides: {
+			root: ({ ownerState }) => ({
+			  ...(ownerState.variant === 'contained' &&
+				ownerState.color === 'primary' && {
+				  color: '#fff',
+				}),
+			}),
+		  },
+		},
+	  },
 });
 
 export default theme

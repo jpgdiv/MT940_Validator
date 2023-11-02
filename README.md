@@ -30,7 +30,7 @@ cd server
 npm i
 ```
 
-running the front-end
+running the backend
 
 ```shell
 npm run server

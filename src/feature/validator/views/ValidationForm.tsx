@@ -1,13 +1,18 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useState } from "react";
 import { FileLink } from "../components/FileLink";
+import LoadingButton from "../components/LoadingButton/LoadingButton";
 import { RecordUploadButton } from "../components/RecordUploadButton";
 import { TextBox } from "../components/TextBox";
 
 export default function ValidatorForm({
   handleSubmit,
+  isLoading,
+  error,
 }: {
   handleSubmit: (files: File[]) => void;
+  isLoading: boolean;
+  error: string | null;
 }) {
   const [files, setFiles] = useState<File[]>([]);
 
@@ -37,15 +42,16 @@ export default function ValidatorForm({
           ))}
         </Box>
         <Box sx={{ mt: 4 }}>
-          <Button
+          <LoadingButton
             onClick={() => {
               handleSubmit(files);
             }}
-            variant="contained"
-            disabled={files === null}
+            isLoading={isLoading}
+            disabled={files.length === 0 || isLoading}
           >
             Validate Record
-          </Button>
+          </LoadingButton>
+          {error !== null && <TextBox>{error}</TextBox>}
         </Box>
       </Box>
     </Box>

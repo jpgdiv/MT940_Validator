@@ -11,7 +11,9 @@ describe("Renders ValidationForm page correctly", () => {
   });
 
   it("Page has rendered components", async () => {
-    render(<ValidationForm handleSubmit={() => {}} />);
+    render(
+      <ValidationForm isLoading={false} error={null} handleSubmit={() => {}} />,
+    );
 
     const button1 = await screen.findByText("Upload Record");
     const button2 = await screen.findByText("Validate Record");
@@ -21,7 +23,7 @@ describe("Renders ValidationForm page correctly", () => {
   });
   it("Upload a file", async () => {
     const fn = vi.fn();
-    render(<ValidationForm handleSubmit={fn} />);
+    render(<ValidationForm isLoading={false} error={null} handleSubmit={fn} />);
 
     const fileinput = await screen.findByTestId("visuallyhiddeninput");
 
@@ -34,7 +36,7 @@ describe("Renders ValidationForm page correctly", () => {
   });
   it("submit a file", async () => {
     const fn = vi.fn();
-    render(<ValidationForm handleSubmit={fn} />);
+    render(<ValidationForm isLoading={false} error={null} handleSubmit={fn} />);
 
     const fileinput = await screen.findByTestId("visuallyhiddeninput");
     const button2 = await screen.findByText("Validate Record");

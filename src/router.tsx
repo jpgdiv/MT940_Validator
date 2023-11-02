@@ -11,6 +11,10 @@ export const routes = [
         path: "/",
         element: <ValidatorPage />,
       },
+      {
+        path: "/report",
+        element: <>TODO implement Report page</>,
+      },
     ],
   },
 ];

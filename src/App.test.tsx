@@ -1,13 +1,12 @@
-import { BrowserRouter } from "react-router-dom";
 import { describe, expect, it } from "vitest";
 import App from "./App";
 import { render, screen } from "./test/utils";
 
 describe("Renders App page correctly", () => {
   it("Should render the page title correctly", async () => {
-    render(<App />, { wrapper: BrowserRouter });
+    render(<App />);
 
-    const title = await screen.findByText("Record Validator");
+    const title = await screen.findByText("Validation");
 
     expect(title).toBeInTheDocument();
   });

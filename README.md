@@ -1,27 +1,62 @@
-# React + TypeScript + Vite
+# README
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Introduction
 
-Currently, two official plugins are available:
+This project has an aplication for validation MT940 format .csv files.
+The project has a frontend and backend. In the ./src folder is the frontend. In the ./server is the backend.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Instructions installation and running the app
 
-## Expanding the ESLint configuration
+### Frontend
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+installing frontend.
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+```shell
+npm i
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+running the frontend
+
+```shell
+npm run dev
+```
+
+### Backend
+
+installing the backend.
+
+```shell
+cd server
+npm i
+```
+
+running the front-end
+
+```shell
+npm run server
+```
+
+## Instruction for mock server
+
+In the .env file you can set VITE_USE_MSW="enabled".
+This will intercept request to the backend and return a mocked value.
+
+## Linting and testing
+
+Linting with eslint
+
+```shell
+npm run lint
+```
+
+running prettier format
+
+```shell
+npm run format
+```
+
+testing the frontend
+
+```shell
+npm run test
+```

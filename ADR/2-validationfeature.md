@@ -1,4 +1,4 @@
-## Tool and libraries used.
+## Validation planning
 
 ### Context
 

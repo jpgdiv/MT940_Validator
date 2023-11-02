@@ -9,7 +9,7 @@ describe("Renders Header component correctly", () => {
       <Header>
         <div>child1link</div>
         <div>child2link</div>
-      </Header>
+      </Header>,
     );
 
     const child1 = await screen.findByText("child1link");

@@ -14,8 +14,6 @@ export default function ValidatorPage() {
     if (data !== null) {
       navigate("/report");
     }
-
-    return abortController.abort();
   }, [data, navigate, abortController]);
 
   useEffect(() => {

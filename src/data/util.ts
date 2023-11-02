@@ -1,7 +1,10 @@
+import fetch from "cross-fetch";
 import { useCallback, useEffect, useState } from "react";
-
 const queryBuilder = (params: Record<string, string> | undefined) =>
   params !== undefined ? "?" + new URLSearchParams(params).toString() : "";
+
+// const fileToBlob = async (file: File) =>
+//   new Blob([new Uint8Array(await file.arrayBuffer())], { type: file.type });
 
 export const getRequestBuilder = (
   url: string,
@@ -23,7 +26,42 @@ export const getRequestBuilder = (
   };
 };
 
-export const postRequestBuilder = <T, F>(
+export const postRequestBuilderFile = <T>(
+  url: string,
+  params?: Record<string, string>,
+) => {
+  const controller = new AbortController();
+  const urlQueryString = queryBuilder(params);
+
+  const headers = new Headers();
+  headers.append("Content-Type", "application/json");
+
+  return {
+    fn: async (body: File): Promise<T> => {
+      const formData = new FormData();
+
+      formData.append("file", body);
+
+      const response = await fetch(url + urlQueryString, {
+        method: "POST",
+        signal: controller.signal,
+        body: formData,
+      });
+      if (!response.ok) {
+        const text = await response.text();
+
+        throw new Error(
+          `code: ${response.status}, ${response.statusText}. message: ${text}`,
+        );
+      }
+      const data = await response.json();
+      return data;
+    },
+    ct: controller,
+  };
+};
+
+export const postRequestBuilderJSON = <T, F>(
   url: string,
   params?: Record<string, string>,
 ) => {
@@ -41,6 +79,12 @@ export const postRequestBuilder = <T, F>(
         signal: controller.signal,
         body: JSON.stringify(body),
       });
+
+      if (!response.ok) {
+        throw new Error(
+          `code: ${response.status}, error: ${response.statusText} ${response.body}`,
+        );
+      }
       const data = await response.json();
       return data;
     },
@@ -91,11 +135,12 @@ export const usePostRequestHookBuilder = <F, T>(request: {
       setIsPending(true);
       try {
         const data = await request.fn(body);
+
         setIsPending(false);
         setData(data);
         setError(null);
       } catch (error) {
-        setError(`${error} Could not Fetch Data `);
+        setError(`${error} failed request `);
         setIsPending(false);
       }
     },

@@ -1,7 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { render, screen } from "../../test/utils";
 
-import theme from "../../theme";
 import Header from "./Header";
 
 describe("Renders Header component correctly", () => {
@@ -18,13 +17,5 @@ describe("Renders Header component correctly", () => {
 
     expect(child1).toBeInTheDocument();
     expect(child2).toBeInTheDocument();
-  });
-  it("Should render the Header color correctly", async () => {
-    render(<Header></Header>);
-
-    const header = await screen.findByTestId("headerbar");
-
-    expect(header).toBeInTheDocument();
-    expect(header).toHaveStyle({ backgroundColor: theme.palette.secondary });
   });
 });

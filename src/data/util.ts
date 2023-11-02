@@ -1,19 +1,4 @@
-import fetch from "cross-fetch";
 import { useCallback, useEffect, useState } from "react";
-
-export interface IRequestReponse<T> {
-  error: boolean;
-  errorMessage: unknown | undefined;
-  data: T | undefined;
-}
-
-export const SERVICE_DOMAINS = {
-  VALIDATION_DOMAIN: "http://localhost:3000",
-};
-
-export const validationEndpoints = {
-  record: "/api/validator",
-};
 
 const queryBuilder = (params: Record<string, string> | undefined) =>
   params !== undefined ? "?" + new URLSearchParams(params).toString() : "";
@@ -44,14 +29,13 @@ export const postRequestBuilder = <T, F>(
 ) => {
   const controller = new AbortController();
   const urlQueryString = queryBuilder(params);
-  console.log(urlQueryString);
 
   const headers = new Headers();
   headers.append("Content-Type", "application/json");
 
   return {
     fn: async (body: F): Promise<T> => {
-      const response = await fetch(url, {
+      const response = await fetch(url + urlQueryString, {
         method: "POST",
         headers,
         signal: controller.signal,

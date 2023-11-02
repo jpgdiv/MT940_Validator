@@ -1,4 +1,5 @@
 import { postRecord } from "../../../data/ValidatorService";
-import { usePostRequestHookBuilder } from "../../../data/dataService";
+// redux thunk, react query are normally prefered over data/util.
+import { usePostRequestHookBuilder } from "../../../data/util";
 
 export const usePostRecord = () => usePostRequestHookBuilder(postRecord());

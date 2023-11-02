@@ -8,7 +8,7 @@ function customRender(ui: React.ReactElement, options = {}) {
     // wrap provider(s) here if needed
     wrapper: ({ children }) =>
       BrowserRouter({
-        children: ThemeProvider({theme, children}),
+        children: ThemeProvider({ theme, children }),
       }),
     ...options,
   });

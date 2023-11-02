@@ -9,7 +9,7 @@ describe("Renders RecordUploadButton correctly", () => {
       type: "text/csv",
     });
     render(
-      <RecordUploadButton handleFile={fn}>recordbutton</RecordUploadButton>
+      <RecordUploadButton handleFile={fn}>recordbutton</RecordUploadButton>,
     );
     const fileinput = await screen.findByTestId("visuallyhiddeninput");
     const button = await screen.findByText("recordbutton");

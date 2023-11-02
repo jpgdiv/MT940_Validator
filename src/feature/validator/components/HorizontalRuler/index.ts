@@ -1,3 +1,3 @@
-import { HorizontalRuler } from './Horizontalruler';
+import { HorizontalRuler } from "./Horizontalruler";
 
 export { HorizontalRuler };
